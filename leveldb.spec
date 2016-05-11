@@ -1,6 +1,6 @@
 Name:           leveldb
 Version:        1.12.0
-Release:        5%{?dist}
+Release:        5%{?dist}.1
 Summary:        A fast and lightweight key/value database library by Google
 Group:          Applications/Databases
 License:        BSD
@@ -65,7 +65,7 @@ rm -f %{buildroot}%{_libdir}/*.la
 
 
 %check
-%ifarch armv5tel armv7hl %{power64}
+%ifarch aarch64 armv5tel armv7hl %{power64}
 # FIXME a couple of tests are failing on these secondary arches, see
 # https://bugzilla.redhat.com/908800
 make check || true
@@ -92,6 +92,9 @@ make check
 
 
 %changelog
+* Wed May 11 2016 François Cami <fcami@fedoraproject.org> - 1.12.0-5.1
+- Add aarch64 to do-not-check architecture list (rhbz#1285593, fix from Jim Perrin).
+
 * Sun Aug 25 2013 Peter Lemenkov <lemenkov@gmail.com> - 1.12.0-5
 - Don't build with assertions
 
